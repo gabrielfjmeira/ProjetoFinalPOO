@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Personagem {
     private int vida;
 
@@ -8,7 +10,9 @@ public abstract class Personagem {
     private int inteligencia;
 
     private int forca;
-    private Equipamento equipamento;
+
+    private Arma arma;
+    private Armadura armadura;
 
     public Personagem(int vida, int mana, int defesa, int inteligencia, int forca) {
         this.vida = vida;
@@ -18,8 +22,40 @@ public abstract class Personagem {
         this.forca = forca;
     }
 
-    public void setEquipamento(Equipamento equipamento) {
-        this.equipamento = equipamento;
+    public int getVida() {
+        return vida;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getDefesa() {
+        return defesa;
+    }
+
+    public int getInteligencia() {
+        return inteligencia;
+    }
+
+    public int getForca() {
+        return forca;
+    }
+
+    public Arma getArma() {
+        return arma;
+    }
+
+    public Armadura getArmadura() {
+        return armadura;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 
     public abstract String falaPersonagem();
