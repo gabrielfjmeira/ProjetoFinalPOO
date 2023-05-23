@@ -13,7 +13,9 @@ public class Loja {
             System.out.println(produto);
         }
     }
+
     public void comprarEquipamento(Pesonagem personagem){
-//        personagem.setEquipamento()
+        personagem.setEquipamento()
     }
+
 }

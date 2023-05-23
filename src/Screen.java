@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 public class Screen extends JFrame{
     public Screen(){
         //Configuração da tela
-        setTitle("Criação de Personagem");
+        setTitle("Tela Inicial");
         setVisible(true);
         setSize(1080, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,7 +19,7 @@ public class Screen extends JFrame{
 
         //Título
         JLabel titulo = new JLabel("RPG");
-        titulo.setBounds(450, 100, 250, 70);
+        titulo.setBounds(470, 100, 250, 70);
         titulo.setFont(title);
         titulo.setForeground(orange);
 
@@ -51,7 +51,8 @@ public class Screen extends JFrame{
     }
 
     public void criarPersonagem(ActionEvent e) {
-        JOptionPane.showMessageDialog(null, "Personagem Criado!");
+        setVisible(false);
+        MenuCriarHeroi menuHeroi = new MenuCriarHeroi();
     }
 
     private void sair(ActionEvent e) {

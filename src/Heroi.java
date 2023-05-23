@@ -39,7 +39,11 @@ public class Heroi extends Personagem {
         }
     }
 
-//    implementacao do metodo abstrato da classe pai
+    public String getNome() {
+        return nome;
+    }
+
+    //    implementacao do metodo abstrato da classe pai
     @Override
     public String falaPersonagem(){
         return "mil meu com mil teu...";

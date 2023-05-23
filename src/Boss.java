@@ -10,8 +10,8 @@ public class Boss extends Personagem{
     private int recompensa;
 
     //Método construtor
-    public Boss(int vida, int mana, int defesa, int inteligencia, int forca, String nome, String raca, int recompensa){
-        super(vida, mana, defesa, inteligencia, forca);
+    public Boss(int vida, int mana, int defesa, int inteligencia, int forca, int agilidade, String nome, String raca, int recompensa){
+        super(vida, mana, defesa, inteligencia, forca, agilidade);
         this.nome = nome;
         this.raca = raca;
         this.recompensa = recompensa;

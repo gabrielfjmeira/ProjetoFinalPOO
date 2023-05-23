@@ -6,8 +6,8 @@ public class Inimigo extends Personagem{
     private int recompensa;
 
     //Método construtor
-    public Inimigo(int vida, int mana, int defesa, int inteligencia, int forca, String raca, int recompensa) {
-        super(vida, mana, defesa, inteligencia, forca);
+    public Inimigo(int vida, int mana, int defesa, int inteligencia, int forca, int agilidade, String raca, int recompensa) {
+        super(vida, mana, defesa, inteligencia, forca, agilidade);
         this.raca = raca;
         this.recompensa = recompensa;
     }
