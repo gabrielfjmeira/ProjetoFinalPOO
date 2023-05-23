@@ -67,7 +67,8 @@ public class MenuPrincipal extends JFrame{
 
     }
     private void jogar(ActionEvent e){
-        JOptionPane.showMessageDialog(null, "Menu de Seleção de Dungeons");
+        setVisible(false);
+        MenuDungeon menuDungeon = new MenuDungeon();
     }
     private void loja(ActionEvent e){
         JOptionPane.showMessageDialog(null, "Página da loja");

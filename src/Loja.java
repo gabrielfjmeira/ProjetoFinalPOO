@@ -14,8 +14,8 @@ public class Loja {
         }
     }
 
-    public void comprarEquipamento(Pesonagem personagem){
-        personagem.setEquipamento()
-    }
+//    public void comprarEquipamento(Pesonagem personagem){
+//        personagem.setEquipamento()
+//    }
 
 }

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 public class Screen extends JFrame{
     public Screen(){
         //Configuração da tela
@@ -16,6 +17,11 @@ public class Screen extends JFrame{
         Font title = new Font("Arial", Font.BOLD, 50);
         Color orange = new Color(231, 107, 49);
         Color white = new Color(255, 255, 255);
+
+        //Background
+//        JLabel backgroundLabel = new JLabel(new ImageIcon("caminho"));
+//        backgroundLabel.setSize(1080, 720);
+//        add(backgroundLabel);
 
         //Título
         JLabel titulo = new JLabel("RPG");
