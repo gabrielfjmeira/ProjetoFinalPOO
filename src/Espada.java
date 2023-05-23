@@ -1,4 +1,4 @@
-public class Espada extends Equipamento {
+public class Espada extends Arma {
     private String descricao;
     private int bonus;
     public Espada(String nome, int preco,int bonus,String descricao) {

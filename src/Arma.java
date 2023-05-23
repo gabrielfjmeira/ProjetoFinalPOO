@@ -1,15 +1,11 @@
-public abstract class Equipamento {
+public abstract class Arma {
     private String nome;
     private int preco;
 
-
-    public Equipamento(String nome, int preco) {
+    public Arma(String nome, int preco) {
         this.nome = nome;
         this.preco = preco;
     }
-
     public abstract void bonusAdd();
     public abstract void descricaoTela();
-
-
 }

@@ -1,4 +1,4 @@
-public class Cajado extends Equipamento{
+public class Cajado extends Arma{
     private String descricao;
     private int bonus;
     public Cajado(String nome, int preco,int bonus,String descricao) {

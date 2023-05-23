@@ -2,20 +2,31 @@ import java.util.ArrayList;
 
 public class Loja {
     private String nome;
-    private ArrayList<Equipamento> produtos;
+    private ArrayList<Arma> armas;
+    private ArrayList<Armadura> armaduras;
 
     public Loja(String nome) {
         this.nome = nome;
+        armas = new ArrayList<>();
+        armaduras= new ArrayList<>();
     }
+
     public void exibirEstoque(){
 
-        for (Equipamento produto:produtos){
-            System.out.println(produto);
+        for ( Arma arma :armas){
+            System.out.println();
+        }
+        for (Armadura armadura:armaduras){
+            System.out.println();
         }
     }
 
-//    public void comprarEquipamento(Pesonagem personagem){
-//        personagem.setEquipamento()
-//    }
+
+    public void comprarEquipamento(Arma arma){
+//        Personagem.setArma();
+    }
+    public void comprarEquipamento(Armadura armadura){
+//        Personagem.setArmadura();
+    }
 
 }

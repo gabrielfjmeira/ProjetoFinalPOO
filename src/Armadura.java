@@ -1,21 +1,12 @@
-public class Armadura extends Equipamento{
-    private String descricao;
-    private int bonus;
-    public Armadura(String nome, int preco,int bonus,String descricao) {
-        super(nome, preco);
-        this.bonus=bonus;
-        this.descricao=descricao;
+public abstract class Armadura {
+    private String nome;
+    private int preco;
 
+    public Armadura(String nome, int preco) {
+        this.nome = nome;
+        this.preco = preco;
     }
-
-    @Override
-    public void bonusAdd() {
-        //Set no atributo ou Set no ataque
-    }
-
-    @Override
-    public void descricaoTela() {
-        System.out.println();
-    }
+    public abstract void bonusAdd();
+    public abstract void descricaoTela();
 
 }
