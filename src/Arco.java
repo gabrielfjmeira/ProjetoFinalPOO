@@ -1,4 +1,4 @@
-public class Arco extends Equipamento{
+public class Arco extends Arma{
     private String descricao;
     private int bonus;
     public Arco(String nome, int preco,int bonus,String descricao) {
