@@ -11,11 +11,6 @@ public class Loja {
         armaduras= new ArrayList<>();
     }
 
-
-
-
-
-
     public void exibirEstoque(){
 
         for ( Arma arma :armas){
@@ -25,6 +20,7 @@ public class Loja {
             System.out.println();
         }
     }
+
 
     public void comprarEquipamento(Arma arma){
 //        Personagem.setArma();

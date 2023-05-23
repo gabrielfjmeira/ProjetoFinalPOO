@@ -1,5 +1,3 @@
-package ProjetoFinalPOO.src;
-
 public class Dungeon {
     private String nome;
     private int n_inimigos;
@@ -9,4 +7,7 @@ public class Dungeon {
         this.n_inimigos = n_inimigos;
     }
 
+    public String getNome() {
+        return nome;
+    }
 }
