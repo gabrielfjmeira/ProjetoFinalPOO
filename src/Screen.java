@@ -1,9 +1,14 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class Screen extends JFrame{
-    public Screen(){
+
+    public Screen() throws IOException {
         //Configuração da tela
         setTitle("Tela Inicial");
         setVisible(true);
@@ -17,11 +22,6 @@ public class Screen extends JFrame{
         Font title = new Font("Arial", Font.BOLD, 50);
         Color orange = new Color(231, 107, 49);
         Color white = new Color(255, 255, 255);
-
-        //Background
-//        JLabel backgroundLabel = new JLabel(new ImageIcon("caminho"));
-//        backgroundLabel.setSize(1080, 720);
-//        add(backgroundLabel);
 
         //Título
         JLabel titulo = new JLabel("RPG");
@@ -49,6 +49,17 @@ public class Screen extends JFrame{
         add(titulo);
         add(criarPersonagem);
         add(sair);
+
+        //Icon
+        ImageIcon image = new ImageIcon("C:\\Users\\meira.gabriel\\Documents\\PJBL10\\rpg\\bin\\icon.jfif");
+        Image icon = image.getImage();
+        this.setIconImage(icon);
+
+        //Background
+        BufferedImage img = ImageIO.read(new File("C:\\Users\\meira.gabriel\\Documents\\PJBL10\\rpg\\bin\\castelo.png"));
+        JLabel background = new JLabel(new ImageIcon(img));
+        background.setBounds(0, 0, getWidth(), getHeight());
+        add(background);
 
         //Adiciona eventos nos botões
         criarPersonagem.addActionListener(this::criarPersonagem);
