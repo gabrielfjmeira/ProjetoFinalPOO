@@ -43,9 +43,48 @@ public class Heroi extends Personagem {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getOuro() {
+        return ouro;
+    }
+
+    public void setOuro(int ouro) {
+        this.ouro = ouro;
+    }
+
     //    implementacao do metodo abstrato da classe pai
     @Override
     public String falaPersonagem(){
         return "mil meu com mil teu...";
+    }
+
+    @Override
+    //    implementando a funcao de atacar
+    public void atacar(Arma arma, Dado dado, Armadura armadura) {
+        boolean verificarAcerto = hitMiss(dado, armadura);
+        int danoCausado;
+        String classe = getTipo();
+        if (verificarAcerto){
+            if (classe.equals("Guerreiro")) {
+                danoCausado = getForca() + arma.bonusAdd();
+            } else if (classe.equals("Mago")) {
+                danoCausado = getInteligencia() + arma.bonusAdd();
+            } else {
+                danoCausado = getAgilidade() + arma.bonusAdd();
+            }
+        } else {
+            danoCausado = 0;
+        }
     }
 }

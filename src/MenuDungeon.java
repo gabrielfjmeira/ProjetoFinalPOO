@@ -89,11 +89,6 @@ public class MenuDungeon extends JFrame{
             }
         }
 
-        //Icon
-        ImageIcon image = new ImageIcon("C:\\Users\\meira.gabriel\\Documents\\PJBL10\\rpg\\bin\\icon.jfif");
-        Image icon = image.getImage();
-        this.setIconImage(icon);
-
     }
 
     private void voltar(ActionEvent e){

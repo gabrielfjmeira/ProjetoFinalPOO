@@ -37,7 +37,12 @@ public abstract class Personagem {
     public int getForca() {
         return forca;
     }
-//    public Arma getArma() {
+
+    public int getAgilidade() {
+        return agilidade;
+    }
+
+    //    public Arma getArma() {
 //        return arma;
 //    }
     public Armadura getArmadura() {
@@ -66,4 +71,22 @@ public abstract class Personagem {
 
 //    cricao do metodo abstrato(sem implementacao)
     public abstract String falaPersonagem();
-}
+
+//    criando a funcao de hit ou miss
+    protected boolean hitMiss(Dado dado, Armadura armadura) {
+        int valorDado = dado.lancarDado();
+        int defesa = getDefesa() + armadura.bonusAdd();
+        if (valorDado >= defesa) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+//    criacao da funcao de ataque do personagem
+    public abstract void atacar(Arma arma, Dado dado, Armadura armadura);
+
+    }
+
+
+

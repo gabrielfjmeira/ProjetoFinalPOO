@@ -9,8 +9,9 @@ public class Cajado extends Arma{
     }
 
     @Override
-    public void bonusAdd() {
+    public int bonusAdd() {
         //Set no atributo ou Set no ataque
+        return bonus;
     }
 
     @Override

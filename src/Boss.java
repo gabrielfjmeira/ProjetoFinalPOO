@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Boss extends Personagem{
 
     //Atributo nome
@@ -21,5 +23,24 @@ public class Boss extends Personagem{
     @Override
     public String falaPersonagem(){
         return "Eu sou o poderoso " + nome + " líder da raça " + raca + " você não pode contra mim!";
+    }
+
+    @Override
+    //    implementando a funcao de atacar
+    public void atacar(Arma arma, Dado dado, Armadura armadura) {
+        boolean verificarAcerto = hitMiss(dado, armadura);
+        int danoCausado;
+        if (verificarAcerto){
+            danoCausado = getForca();
+        } else {
+            danoCausado = 0;
+        }
+    }
+
+//    implementacao do metodo de recompensa do boss
+    public int recompensaBoss(){
+        Random valor = new Random();
+        int recompensa = valor.nextInt(120)+70;
+        return recompensa;
     }
 }
