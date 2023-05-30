@@ -6,7 +6,7 @@ public abstract class Armadura {
         this.nome = nome;
         this.preco = preco;
     }
-    public abstract void bonusAdd();
+    public abstract int bonusAdd();
     public abstract void descricaoTela();
 
 }

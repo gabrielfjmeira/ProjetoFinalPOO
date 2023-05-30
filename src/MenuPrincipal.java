@@ -60,11 +60,6 @@ public class MenuPrincipal extends JFrame{
         add(loja);
         add(sair);
 
-        //Icon
-        ImageIcon image = new ImageIcon("C:\\Users\\meira.gabriel\\Documents\\PJBL10\\rpg\\bin\\icon.jfif");
-        Image icon = image.getImage();
-        this.setIconImage(icon);
-
         //Adiciona eventos nos botões
         jogar.addActionListener(this::jogar);
         loja.addActionListener(this::loja);

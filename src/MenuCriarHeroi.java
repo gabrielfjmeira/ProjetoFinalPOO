@@ -70,11 +70,6 @@ public class MenuCriarHeroi extends JFrame{
         add(heroisList);
         add(btnAddHeroi);
 
-        //Icon
-        ImageIcon image = new ImageIcon("C:\\Users\\meira.gabriel\\Documents\\PJBL10\\rpg\\bin\\icon.jfif");
-        Image icon = image.getImage();
-        this.setIconImage(icon);
-
         //Adiciona eventos nos botões
         btnAddHeroi.addActionListener(this::addHeroi);
 
