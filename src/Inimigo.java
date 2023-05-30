@@ -38,4 +38,8 @@ public class Inimigo extends Personagem{
         int recompensa = valor.nextInt(25)+10;
         return recompensa;
     }
+
+    public String getRaca() {
+        return raca;
+    }
 }

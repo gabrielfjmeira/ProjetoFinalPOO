@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 public class MenuDungeon extends JFrame{
 
     ImageIcon background;
+    ArrayList<Dungeon> dungeons = new ArrayList<>();
     public MenuDungeon(){
         //Configuração da tela
         setTitle("Tela Inicial");
@@ -46,17 +47,29 @@ public class MenuDungeon extends JFrame{
         add(voltar);
         add(titulo);
 
-        //Adiciona eventos nos botões
-        voltar.addActionListener(this::voltar);
-
         //Fases do RPG
-        ArrayList<Dungeon> dungeons = new ArrayList<>();
-        dungeons.add(new Dungeon("Fase 1", 10));
-        dungeons.add(new Dungeon("Fase 2", 12));
-        dungeons.add(new Dungeon("Fase 3", 14));
-        dungeons.add(new Dungeon("Fase 4", 16));
-        dungeons.add(new Dungeon("Fase 5", 18));
-        dungeons.add(new Dungeon("Fase 6", 20));
+
+        //Popula os inimigos da Dungeon 1
+        ArrayList<Personagem> inimigosDungeon1 = new ArrayList<>();
+        for (int i = 0; i <=10; i++){
+            inimigosDungeon1.add(new Inimigo(50, 10, 10, 10, 10, 10, "Goblin", 10));
+        }
+        dungeons.add(new Dungeon("Acampamento Goblin", inimigosDungeon1));
+
+        //Popula os inimigos da Dungeon 2
+        ArrayList<Personagem> inimigosDungeon2 = new ArrayList<>();
+        for (int i = 0; i <=10; i++){
+            inimigosDungeon2.add(new Inimigo(60, 15, 15, 15, 15, 15, "Goblin", 10));
+        }
+        dungeons.add(new Dungeon("Planície dos Goblins", inimigosDungeon2));
+
+        //Popula os inimigos da Dungeon 3
+        ArrayList<Personagem> inimigosDungeon3 = new ArrayList<>();
+        for (int i = 0; i <=4; i++){
+            inimigosDungeon3.add(new Inimigo(70, 20, 20, 20, 20, 20, "Goblin", 10));
+        }
+        inimigosDungeon3.add(new Inimigo(100, 150, 50, 130, 5, 10, "Goblin Feiticeiro", 50));
+        dungeons.add(new Dungeon("Floresta dos Goblins", inimigosDungeon3));
 
         //Lista de botões
         ArrayList<JButton> botoes = new ArrayList<>();
@@ -69,8 +82,13 @@ public class MenuDungeon extends JFrame{
             dungeon.setFont(font);
             dungeon.setForeground(orange);
             dungeon.setBackground(white);
+            dungeon.addActionListener(this::iniciaDungeon);
             botoes.add(dungeon);
         }
+
+        //Adiciona eventos nos botões
+        voltar.addActionListener(this::voltar);
+
 
         //Imprime o botão
         int x = 100;
@@ -89,10 +107,19 @@ public class MenuDungeon extends JFrame{
             }
         }
 
+
+
     }
 
+    //Evento de Voltar
     private void voltar(ActionEvent e){
         setVisible(false);
         MenuPrincipal menuPrincipal = new MenuPrincipal();
+    }
+
+    //Evento de inicializar dungeon
+    private void iniciaDungeon(ActionEvent e){
+        setVisible(false);
+        dungeons.get(0).inicializarDungeon();
     }
 }
