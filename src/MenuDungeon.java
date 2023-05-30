@@ -82,7 +82,13 @@ public class MenuDungeon extends JFrame{
             dungeon.setFont(font);
             dungeon.setForeground(orange);
             dungeon.setBackground(white);
-            dungeon.addActionListener(this::iniciaDungeon);
+            if (i == 0){
+                dungeon.addActionListener(this::iniciaDungeon1);
+            }else if(i == 1){
+                dungeon.addActionListener(this::iniciaDungeon2);
+            }else{
+                dungeon.addActionListener(this::iniciaDungeon3);
+            }
             botoes.add(dungeon);
         }
 
@@ -118,8 +124,18 @@ public class MenuDungeon extends JFrame{
     }
 
     //Evento de inicializar dungeon
-    private void iniciaDungeon(ActionEvent e){
+    private void iniciaDungeon1(ActionEvent e){
         setVisible(false);
         dungeons.get(0).inicializarDungeon();
+    }
+
+    private void iniciaDungeon2(ActionEvent e){
+        setVisible(false);
+        dungeons.get(1).inicializarDungeon();
+    }
+
+    private void iniciaDungeon3(ActionEvent e){
+        setVisible(false);
+        dungeons.get(2).inicializarDungeon();
     }
 }
