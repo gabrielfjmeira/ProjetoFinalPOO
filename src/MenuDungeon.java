@@ -52,23 +52,23 @@ public class MenuDungeon extends JFrame{
         //Popula os inimigos da Dungeon 1
         ArrayList<Personagem> inimigosDungeon1 = new ArrayList<>();
         for (int i = 0; i <=10; i++){
-            inimigosDungeon1.add(new Inimigo(50, 10, 10, 10, 10, 10, "Goblin", 10));
+            inimigosDungeon1.add(new Inimigo(12, 10, 10, 10, 3, 10, "Goblin", 10));
         }
         dungeons.add(new Dungeon("Acampamento Goblin", inimigosDungeon1));
 
         //Popula os inimigos da Dungeon 2
         ArrayList<Personagem> inimigosDungeon2 = new ArrayList<>();
         for (int i = 0; i <=10; i++){
-            inimigosDungeon2.add(new Inimigo(60, 15, 15, 15, 15, 15, "Goblin", 10));
+            inimigosDungeon2.add(new Inimigo(16, 15, 10, 15, 4, 15, "Goblin", 10));
         }
         dungeons.add(new Dungeon("Planície dos Goblins", inimigosDungeon2));
 
         //Popula os inimigos da Dungeon 3
         ArrayList<Personagem> inimigosDungeon3 = new ArrayList<>();
         for (int i = 0; i <=4; i++){
-            inimigosDungeon3.add(new Inimigo(70, 20, 20, 20, 20, 20, "Goblin", 10));
+            inimigosDungeon3.add(new Inimigo(20, 20, 10, 20, 5, 20, "Goblin", 10));
         }
-        inimigosDungeon3.add(new Inimigo(100, 150, 50, 130, 5, 10, "Goblin Feiticeiro", 50));
+        inimigosDungeon3.add(new Inimigo(24, 150, 12, 130, 8, 10, "Goblin Feiticeiro", 50));
         dungeons.add(new Dungeon("Floresta dos Goblins", inimigosDungeon3));
 
         //Lista de botões
@@ -126,16 +126,16 @@ public class MenuDungeon extends JFrame{
     //Evento de inicializar dungeon
     private void iniciaDungeon1(ActionEvent e){
         setVisible(false);
-        dungeons.get(0).inicializarDungeon();
+        dungeons.get(0).inicializarDungeon("A batalha na " + dungeons.get(0).getNome() + " comeca!", "", "");
     }
 
     private void iniciaDungeon2(ActionEvent e){
         setVisible(false);
-        dungeons.get(1).inicializarDungeon();
+        dungeons.get(1).inicializarDungeon("A batalha na " + dungeons.get(1).getNome() + " comeca!", "", "");
     }
 
     private void iniciaDungeon3(ActionEvent e){
         setVisible(false);
-        dungeons.get(2).inicializarDungeon();
+        dungeons.get(2).inicializarDungeon("A batalha na " + dungeons.get(2).getNome() + " comeca!", "", "");
     }
 }

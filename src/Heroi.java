@@ -66,7 +66,7 @@ public class Heroi extends Personagem {
     //    implementacao do metodo abstrato da classe pai
     @Override
     public String falaPersonagem(){
-        return "mil meu com mil teu...";
+        return "Pelos Poderes de Graiscou";
     }
 
     @Override
