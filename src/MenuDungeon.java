@@ -2,34 +2,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
+import java.util.Random;
 
-public class MenuDungeon extends JFrame{
+public class MenuDungeon extends JFrame {
+    Random rd = new Random();
 
-    ImageIcon background;
-    ArrayList<Dungeon> dungeons = new ArrayList<>();
+    ArrayList<Dungeon> dungeons=new ArrayList<>();
+    private JFrame menu =new JFrame();
     public MenuDungeon(){
-        //Configuração da tela
-        setTitle("Tela Inicial");
-        setVisible(true);
-        setSize(1080, 720);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        setLayout(null);
+        menu.setTitle("Menu - Dungeons");
+        menu.setSize(1080,720);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menu.setResizable(false);
+        menu.setLocationRelativeTo(null);
 
         Font font = new Font("Arial", Font.BOLD, 20);
         Font title = new Font("Arial", Font.BOLD, 50);
         Color orange = new Color(231, 107, 49);
         Color white = new Color(255, 255, 255);
 
-        //Background
-//        background = new ImageIcon("caminho");
-//        JLabel backgroundLabel = new JLabel();
-//        backgroundLabel.setIcon(background);
-//        backgroundLabel.setSize(1080, 720);
-//        add(backgroundLabel);
-
+        BackgroundImage background =new BackgroundImage("C:\\Users\\brunn\\OneDrive\\Documentos\\PUC 2023.1\\POO\\POO_PJBL10\\src\\Imagens\\MenuInicial.jpg");
+        menu.add(background);
+        background.setLayout(null);
+        //Título
+        JLabel titulo = new JLabel("DUNGEONS");
+        titulo.setBounds(400, 100, 320, 70);
+        titulo.setFont(title);
+        titulo.setForeground(orange);
+        background.add(titulo);
         //Botão para voltar para o menu
         JButton voltar = new JButton();
         voltar.setText("Voltar");
@@ -37,105 +37,43 @@ public class MenuDungeon extends JFrame{
         voltar.setFont(font);
         voltar.setForeground(orange);
         voltar.setBackground(white);
+        background.add(voltar);
 
-        //Título
-        JLabel titulo = new JLabel("DUNGEONS");
-        titulo.setBounds(400, 100, 320, 70);
-        titulo.setFont(title);
-        titulo.setForeground(orange);
-
-        add(voltar);
-        add(titulo);
-
-        //Fases do RPG
-
-        //Popula os inimigos da Dungeon 1
-        ArrayList<Personagem> inimigosDungeon1 = new ArrayList<>();
-        for (int i = 0; i <=10; i++){
-            inimigosDungeon1.add(new Inimigo(12, 10, 10, 10, 3, 10, "Goblin", 10));
+        ArrayList<Personagem> inimigosDungeon1= new ArrayList<>();
+        for (int i=0;i<=rd.nextInt(7,10);i++){
+            inimigosDungeon1.add(new Inimigo("Goblins"));
         }
-        dungeons.add(new Dungeon("Acampamento Goblin", inimigosDungeon1));
+        dungeons.add(new Dungeon("Floresta dos Goblins",inimigosDungeon1));
 
-        //Popula os inimigos da Dungeon 2
-        ArrayList<Personagem> inimigosDungeon2 = new ArrayList<>();
-        for (int i = 0; i <=10; i++){
-            inimigosDungeon2.add(new Inimigo(16, 15, 10, 15, 4, 15, "Goblin", 10));
-        }
-        dungeons.add(new Dungeon("Planície dos Goblins", inimigosDungeon2));
 
-        //Popula os inimigos da Dungeon 3
-        ArrayList<Personagem> inimigosDungeon3 = new ArrayList<>();
-        for (int i = 0; i <=4; i++){
-            inimigosDungeon3.add(new Inimigo(20, 20, 10, 20, 5, 20, "Goblin", 10));
-        }
-        inimigosDungeon3.add(new Inimigo(24, 150, 12, 130, 8, 10, "Goblin Feiticeiro", 50));
-        dungeons.add(new Dungeon("Floresta dos Goblins", inimigosDungeon3));
+        //Botão Dungeon 1
+        JButton btnDungeon1 = new JButton();
+        btnDungeon1.setText(dungeons.get(0).getNome());
+        btnDungeon1.setFont(font);
+        btnDungeon1.setBounds(400,200,250,70);
+        btnDungeon1.setForeground(orange);
+        btnDungeon1.setBackground(white);
+        background.add(btnDungeon1);
+        //Dungeon 1
 
-        //Lista de botões
-        ArrayList<JButton> botoes = new ArrayList<>();
 
-        //Adiciona os botões na lista de botões
-        for (int i = 0; i < dungeons.size(); i++) {
-            //Criar button das dungeons
-            JButton dungeon = new JButton();
-            dungeon.setText(dungeons.get(i).getNome());
-            dungeon.setFont(font);
-            dungeon.setForeground(orange);
-            dungeon.setBackground(white);
-            if (i == 0){
-                dungeon.addActionListener(this::iniciaDungeon1);
-            }else if(i == 1){
-                dungeon.addActionListener(this::iniciaDungeon2);
-            }else{
-                dungeon.addActionListener(this::iniciaDungeon3);
-            }
-            botoes.add(dungeon);
-        }
 
-        //Adiciona eventos nos botões
+
+        //Ações dos botões
         voltar.addActionListener(this::voltar);
+        btnDungeon1.addActionListener(this::iniciaDungeon1);
 
 
-        //Imprime o botão
-        int x = 100;
-        int y = 200;
-        int i = 0;
-        int l = 1;
-
-        for (JButton botao: botoes) {
-            botao.setBounds(x, y*l, 250, 70);
-            add(botao);
-            x += 300;
-            i += 1;
-            if(i % 3 == 0){
-                x = 100;
-                l += 1;
-            }
-        }
-
-
-
+        menu.setVisible(true);
     }
 
-    //Evento de Voltar
-    private void voltar(ActionEvent e){
-        setVisible(false);
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
+    private void iniciaDungeon1(ActionEvent e) {
+        menu.setVisible(false);
+        dungeons.get(0).inicializarDungeon();
     }
 
-    //Evento de inicializar dungeon
-    private void iniciaDungeon1(ActionEvent e){
-        setVisible(false);
-        dungeons.get(0).inicializarDungeon("A batalha na " + dungeons.get(0).getNome() + " comeca!", "", "");
-    }
-
-    private void iniciaDungeon2(ActionEvent e){
-        setVisible(false);
-        dungeons.get(1).inicializarDungeon("A batalha na " + dungeons.get(1).getNome() + " comeca!", "", "");
-    }
-
-    private void iniciaDungeon3(ActionEvent e){
-        setVisible(false);
-        dungeons.get(2).inicializarDungeon("A batalha na " + dungeons.get(2).getNome() + " comeca!", "", "");
+    private void voltar(ActionEvent e) {
+        menu.setVisible(false);
+        MenuJogo menuJogo = new MenuJogo();
     }
 }

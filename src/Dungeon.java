@@ -2,44 +2,38 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class Dungeon extends JFrame{
+public class Dungeon extends JFrame {
     private String nome;
     private Heroi heroi;
     private ArrayList<Personagem> inimigos;
 
-    Dado dadoHeroi = new Dado(20);
-    Dado dadoInimigo = new Dado(20);
-
-    public Dungeon(String nome, ArrayList<Personagem> inimigos) {
+    public Dungeon(String nome,ArrayList<Personagem> inimigos){
         this.nome = nome;
         this.heroi = MenuCriarHeroi.heroi;
         this.inimigos = inimigos;
     }
 
-    public void inicializarDungeon(String mensagem, String mensagemH, String mensagemI){
-        //Começa a dungeon enfrentando o primeiro inimigo
-        //Configuração da tela
-        setTitle(this.getNome());
-        setVisible(true);
-        setSize(1080, 720);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        setLayout(null);
+    public String getNome() {
+        return nome;
+    }
+    private JFrame menu =new JFrame();
+    public void inicializarDungeon(){
+        menu.setTitle("Floresta Goblin");
+        menu.setSize(1080,720);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menu.setResizable(false);
+        menu.setLocationRelativeTo(null);
 
         Font font = new Font("Arial", Font.BOLD, 20);
         Font title = new Font("Arial", Font.BOLD, 50);
         Color orange = new Color(231, 107, 49);
         Color white = new Color(255, 255, 255);
 
-        //Botão de Voltar para a Seleção de Dungeon
-        JButton voltar = new JButton();
-        voltar.setText("Voltar");
-        voltar.setBounds(100, 100, 100, 50);
-        voltar.setFont(font);
-        voltar.setForeground(orange);
-        voltar.setBackground(white);
+        BackgroundImage background =new BackgroundImage("C:\\Users\\brunn\\OneDrive\\Documentos\\PUC 2023.1\\POO\\POO_PJBL10\\src\\Imagens\\FlorestaGoblin.jpg");
+        menu.add(background);
+        background.setLayout(null);
 
         //Título
         JLabel titulo = new JLabel();
@@ -47,13 +41,7 @@ public class Dungeon extends JFrame{
         titulo.setBounds(300, 100, 550, 70);
         titulo.setFont(title);
         titulo.setForeground(orange);
-
-        //Aidicona o botão de voltar e o título da fase
-        add(voltar);
-        add(titulo);
-
-        //Adiciona eventos nos botões
-        voltar.addActionListener(this::voltar);
+        background.add(titulo);
 
         //Fala do Herói
         JLabel falaHeroi = new JLabel();
@@ -61,7 +49,7 @@ public class Dungeon extends JFrame{
         falaHeroi.setText(heroi.falaPersonagem());
         falaHeroi.setFont(font);
         falaHeroi.setForeground(orange);
-
+        background.add(falaHeroi);
         //Informações do Herói
         JLabel infoHeroi = new JLabel();
         infoHeroi.setBounds(75, 200, 350, 70);
@@ -70,16 +58,16 @@ public class Dungeon extends JFrame{
         }else{
             infoHeroi.setText("HEROI: " + heroi.getNome() + " - VIDA: 0");
         }
-
         infoHeroi.setFont(font);
         infoHeroi.setForeground(orange);
-
+        background.add(infoHeroi);
         //Fala do Inimigo
         JLabel falaInimigo = new JLabel();
         falaInimigo.setBounds(525, 170, 650, 70);
         falaInimigo.setText(inimigos.get(0).falaPersonagem());
         falaInimigo.setFont(font);
         falaInimigo.setForeground(orange);
+        background.add(falaInimigo);
 
         //Informações do Inimigo
         JLabel infoInimigo = new JLabel();
@@ -89,113 +77,84 @@ public class Dungeon extends JFrame{
         }
         infoInimigo.setFont(font);
         infoInimigo.setForeground(orange);
+        background.add(infoInimigo);
 
         //Botão de Atacar
-        JButton atacar = new JButton();
-        atacar.setText("Atacar");
-        atacar.setBounds(475, 350, 100, 50);
-        atacar.setFont(font);
-        atacar.setForeground(orange);
-        atacar.setBackground(white);
-
-        //Informações do ataque do heroi
-        JLabel infoAtqHeroi = new JLabel();
-        infoAtqHeroi.setBounds(360, 400, 650, 70);
-        if(!mensagemH.equals("")){
-            infoAtqHeroi.setText(mensagemH);
+        JButton btnatacar = new JButton();
+        btnatacar.setText("Atacar");
+        btnatacar.setBounds(475, 350, 100, 50);
+        btnatacar.setFont(font);
+        btnatacar.setForeground(orange);
+        btnatacar.setBackground(white);
+        if(heroi.getVida()>0) {
+            background.add(btnatacar);
         }
-        infoAtqHeroi.setFont(font);
-        infoAtqHeroi.setForeground(orange);
-
-        //Informações do ataque do inimigo
-        JLabel infoAtqInimigo = new JLabel();
-        infoAtqInimigo.setBounds(360, 450, 650, 70);
-        if(!mensagemI.equals("")){
-            infoAtqInimigo.setText(mensagemI);
+        //Botão de fugir
+        JButton btnfugir = new JButton();
+        btnfugir.setText("Fugir");
+        btnfugir.setBounds(475, 450, 100, 50);
+        btnfugir.setFont(font);
+        btnfugir.setForeground(orange);
+        btnfugir.setBackground(white);
+        if(heroi.getVida()>0) {
+            background.add(btnfugir);
         }
-        infoAtqInimigo.setFont(font);
-        infoAtqInimigo.setForeground(orange);
-
-        //Informações do game
-        JLabel infoGame = new JLabel();
-        infoGame.setBounds(360, 500, 650, 70);
-        if(!mensagem.equals("")){
-            infoGame.setText(mensagem);
+        //Botão de Voltar
+        JButton btnvoltar = new JButton();
+        btnvoltar.setText("Voltar");
+        btnvoltar.setBounds(475, 350, 100, 50);
+        btnvoltar.setFont(font);
+        btnvoltar.setForeground(orange);
+        btnvoltar.setBackground(white);
+        if(heroi.getVida()<=0) {
+            background.add(btnvoltar);
         }
-        infoGame.setFont(font);
-        infoGame.setForeground(orange);
 
-        //Adiciona as informações de Herói/Inimigo e do Botão de Atacar
-        add(falaHeroi);
-        add(falaInimigo);
-        add(infoHeroi);
-        add(infoInimigo);
-        add(infoGame);
-        if(heroi.getVida()>0){
-            add(atacar);
-        }
-        add(infoAtqHeroi);
-        add(infoAtqInimigo);
+        //Ações dos Botões
+        btnatacar.addActionListener(this::ataque);
+        btnfugir.addActionListener(this::fugir);
+        btnvoltar.addActionListener(this::voltar);
 
-        //Adiciona eventos de lançar dado
-        atacar.addActionListener(this::atacar);
+
+
+
+
+
+
+        menu.setVisible(true);
 
     }
 
-    public String getNome() {
-        return nome;
+    private void voltar(ActionEvent e) {
+        MenuDungeon menuDungeon=new MenuDungeon();
     }
 
-    //Evento de Voltar
-    private void voltar(ActionEvent e){
-        setVisible(false);
-        MenuDungeon menuDungeon = new MenuDungeon();
-    }
+    private void fugir(ActionEvent e) {
+        Random rd =new Random();
+        if(rd.nextInt(10)+1>=8){
+            menu.setVisible(false);
+            MenuDungeon menuDungeon=new MenuDungeon();
 
-    //Evento de atacar
-    private void atacar(ActionEvent e){
-
-        String mensagem = "";
-        String mensagemH = "";
-        String mensagemI = "";
-
-        int valorHeroi = dadoHeroi.lancarDado();
-        int valorInimigo = dadoInimigo.lancarDado();
-        int defesaHeroi = heroi.getDefesa();
-        int defesaInimigo = inimigos.get(0).getDefesa();
-        if(valorHeroi > defesaInimigo){
-            inimigos.get(0).setVida(inimigos.get(0).getVida()-heroi.getForca());
-            mensagemH += "Voce atingiu o goblin!";
         }else{
-            mensagemH += "Voce errou o ataque!";
+            inimigos.get(0).atacar(heroi);
+            menu.setVisible(false);
+            Dungeon dungeonNextStep = new Dungeon(nome, inimigos);
+            dungeonNextStep.inicializarDungeon();
         }
+    }
 
-        if (valorInimigo > defesaHeroi){
-            heroi.setVida(heroi.getVida()-inimigos.get(0).getForca());
-            mensagemI += "O goblin te acertou!";
-            if(inimigos.get(0).getVida()<=0){
-                mensagemI += " E morreu!";
-            }
-        }else{
-            if(inimigos.get(0).getVida()>0){
-                mensagemI += "O goblin errou o ataque!";
-            }else {
-                mensagemI += "O goblin morreu";
-            }
-        }
-
-
+    private void ataque(ActionEvent e) {
+        heroi.atacar(inimigos.get(0));
+        inimigos.get(0).atacar(heroi);
         if(inimigos.get(0).getVida() <= 0){
             inimigos.remove(0);
-            mensagem += "Voce encontrou outro goblin pelo caminho!";
+//            mensagem += "Voce encontrou outro goblin pelo caminho!";
         }else if(heroi.getVida() <= 0){
-            mensagem += "Voce morreu :(";
+//            mensagem += "Voce morreu :(";
+
         }
-
-        //Fecha tela e abre uma nova dungeon com novos dados para continuar
-        setVisible(false);
+        menu.setVisible(false);
         Dungeon dungeonNextStep = new Dungeon(nome, inimigos);
-        dungeonNextStep.inicializarDungeon(mensagem, mensagemH, mensagemI);
+        dungeonNextStep.inicializarDungeon();
     }
-
 }

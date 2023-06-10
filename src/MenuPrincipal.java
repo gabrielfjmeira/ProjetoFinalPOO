@@ -1,51 +1,33 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-public class MenuPrincipal extends JFrame{
+
+public class MenuPrincipal extends JFrame {
+    private JFrame menu =new JFrame();
     public MenuPrincipal(){
         //Configuração da tela
-        setTitle("Menu - RPG");
-        setVisible(true);
-        setSize(1080, 720);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        setLayout(null);
+        menu.setTitle("Menu - GlobinSlayer");
+        menu.setSize(1080,720);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menu.setResizable(false);
+        menu.setLocationRelativeTo(null);
 
         Font font = new Font("Arial", Font.BOLD, 20);
         Font title = new Font("Arial", Font.BOLD, 50);
         Color orange = new Color(231, 107, 49);
         Color white = new Color(255, 255, 255);
 
-        //Título
-        JLabel titulo = new JLabel("RPG");
-        titulo.setBounds(475, 100, 250, 70);
-        titulo.setFont(title);
-        titulo.setForeground(orange);
+        BackgroundImage background =new BackgroundImage("C:\\Users\\brunn\\OneDrive\\Documentos\\PUC 2023.1\\POO\\POO_PJBL10\\src\\Imagens\\MenuInicial.jpg");
+        menu.add(background);
 
-        //SubTítulo
-        JLabel subtitulo = new JLabel("Bem vindo herói " + MenuCriarHeroi.heroi.getNome());
-        subtitulo.setBounds(420, 150, 250, 70);
-        subtitulo.setFont(font);
-        subtitulo.setForeground(orange);
-
-        //Botão para Jogar
-        JButton jogar = new JButton();
-        jogar.setText("Jogar");
-        jogar.setBounds(400, 200, 250, 70);
-        jogar.setFont(font);
-        jogar.setForeground(orange);
-        jogar.setBackground(white);
-
-        //Botão para Loja
-        JButton loja = new JButton();
-        loja.setText("Loja");
-        loja.setBounds(400, 300, 250, 70);
-        loja.setFont(font);
-        loja.setForeground(orange);
-        loja.setBackground(white);
-
-        //Botão para fechar o jogo
+        //Botão de Criar Personagem
+        JButton criarPersonagem = new JButton();
+        criarPersonagem.setText("Criar Personagem");
+        criarPersonagem.setBounds(400,200,250,70);
+        criarPersonagem.setFont(font);
+        criarPersonagem.setForeground(orange);
+        criarPersonagem.setBackground(white);
+        //Botão de Sair
         JButton sair = new JButton();
         sair.setText("Sair");
         sair.setBounds(400, 400, 250, 70);
@@ -53,27 +35,25 @@ public class MenuPrincipal extends JFrame{
         sair.setForeground(orange);
         sair.setBackground(white);
 
-        //Adiciona os botões na tela
-        add(titulo);
-        add(subtitulo);
-        add(jogar);
-        add(loja);
-        add(sair);
-
-        //Adiciona eventos nos botões
-        jogar.addActionListener(this::jogar);
-        loja.addActionListener(this::loja);
+        //Ações dos Botões
+        criarPersonagem.addActionListener(this::criarPersonagem);
         sair.addActionListener(this::sair);
 
+        background.setLayout(null);
+        background.add(criarPersonagem);
+        background.add(sair);
+        menu.setVisible(true);
+
     }
-    private void jogar(ActionEvent e){
-        setVisible(false);
-        MenuDungeon menuDungeon = new MenuDungeon();
+
+
+
+    public void criarPersonagem(ActionEvent e) {
+        menu.setVisible(false);
+        MenuCriarHeroi menuHeroi = new MenuCriarHeroi();
     }
-    private void loja(ActionEvent e){
-        JOptionPane.showMessageDialog(null, "Página da loja");
-    }
+
     private void sair(ActionEvent e) {
-        dispose();
+        System.exit(0);
     }
 }

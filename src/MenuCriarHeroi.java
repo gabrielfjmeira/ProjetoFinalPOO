@@ -1,27 +1,28 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-public class MenuCriarHeroi extends JFrame{
+
+public class MenuCriarHeroi extends JFrame {
     public static Heroi heroi;
-    private JTextField nomeHeroiInput;
-    private JComboBox tipoHeroiInput;
+    public JTextField nomeHeroiInput;
+    public JComboBox tipoHeroiInput;
+   private JFrame menu =new JFrame();
 
     public MenuCriarHeroi(){
-        //Configuração da tela
-        setTitle("Menu de criação de personagem");
-        setVisible(true);
-        setSize(1080, 720);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        setLayout(null);
+        menu.setTitle("Menu - Criar Heroi");
+        menu.setSize(1080,720);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menu.setResizable(false);
+        menu.setLocationRelativeTo(null);
 
         Font font = new Font("Arial", Font.BOLD, 20);
         Font title = new Font("Arial", Font.BOLD, 50);
         Color orange = new Color(231, 107, 49);
         Color white = new Color(255, 255, 255);
 
-        //Título
+        BackgroundImage background =new BackgroundImage("C:\\Users\\brunn\\OneDrive\\Documentos\\PUC 2023.1\\POO\\POO_PJBL10\\src\\Imagens\\MenuInicial.jpg");
+        menu.add(background);
+        // Titulo
         JLabel titulo = new JLabel("Criar Herói");
         titulo.setBounds(390, 100, 400, 70);
         titulo.setFont(title);
@@ -63,29 +64,38 @@ public class MenuCriarHeroi extends JFrame{
         btnAddHeroi.setForeground(orange);
         btnAddHeroi.setBackground(white);
 
-        add(titulo);
-        add(titleNomeHeroi);
-        add(nomeHeroi);
-        add(titleHeroisList);
-        add(heroisList);
-        add(btnAddHeroi);
 
-        //Adiciona eventos nos botões
+
+        background.setLayout(null);
+        background.add(titulo);
+        background.add(titleNomeHeroi);
+        background.add(nomeHeroi);
+        background.add(titleHeroisList);
+        background.add(heroisList);
+        background.add(btnAddHeroi);
+
+        //Ações dos botões
+
         btnAddHeroi.addActionListener(this::addHeroi);
+
+
+        menu.setVisible(true);
 
     }
 
-    private void addHeroi(ActionEvent e){
+    private void addHeroi(ActionEvent e) {
         String nome = nomeHeroiInput.getText();
-        String tipoHeroi = (String) tipoHeroiInput.getSelectedItem();
-        if(nome.length() > 0 && !tipoHeroi.equals("Selecione uma opção")){
-            heroi = new Heroi(nome, tipoHeroi);
+        String classe = (String) tipoHeroiInput.getSelectedItem();
+        if(nome.length() > 0 && !classe.equals("Selecione uma opção")){
+            heroi = new Heroi(nome, classe);
             JOptionPane.showMessageDialog(null, "Personagem Criado!");
-            setVisible(false);
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            menu.setVisible(false);
+            MenuJogo menuJogo = new MenuJogo();
         }else{
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
         }
     }
-
 }
+
+
+
