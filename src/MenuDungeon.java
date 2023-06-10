@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MenuDungeon extends JFrame {
+public class MenuDungeon {
     Random rd = new Random();
 
     ArrayList<Dungeon> dungeons=new ArrayList<>();
@@ -45,7 +45,6 @@ public class MenuDungeon extends JFrame {
         }
         dungeons.add(new Dungeon("Floresta dos Goblins",inimigosDungeon1));
 
-
         //Botão Dungeon 1
         JButton btnDungeon1 = new JButton();
         btnDungeon1.setText(dungeons.get(0).getNome());
@@ -54,22 +53,17 @@ public class MenuDungeon extends JFrame {
         btnDungeon1.setForeground(orange);
         btnDungeon1.setBackground(white);
         background.add(btnDungeon1);
-        //Dungeon 1
-
-
-
 
         //Ações dos botões
         voltar.addActionListener(this::voltar);
         btnDungeon1.addActionListener(this::iniciaDungeon1);
-
 
         menu.setVisible(true);
     }
 
     private void iniciaDungeon1(ActionEvent e) {
         menu.setVisible(false);
-        dungeons.get(0).inicializarDungeon();
+        dungeons.get(0).inicializarDungeon("A batalha na " + dungeons.get(0).getNome() + " começa!", "", "");
     }
 
     private void voltar(ActionEvent e) {

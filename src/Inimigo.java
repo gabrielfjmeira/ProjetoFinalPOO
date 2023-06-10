@@ -19,6 +19,10 @@ public class Inimigo extends Personagem{
         return raca;
     }
 
+    public int getRecompensa() {
+        return recompensa;
+    }
+
     @Override
     public String falaPersonagem(){
         if(raca.equals("Goblins")){
@@ -27,12 +31,14 @@ public class Inimigo extends Personagem{
         return "";
     }
     @Override
-    public void atacar(Personagem personagem){
+    public String atacar(Personagem personagem){
         int dadoInimigo = rd.nextInt(20)+1;
         int defesaHeroi=personagem.getDefesa();
         if(dadoInimigo>defesaHeroi){
             personagem.setVida(personagem.getVida()-this.getAtaque());
+            return "O " + this.getRaca() + " atacou o herói, causando " + this.getAtaque() + " de dano";
+        }else{
+            return "O " + this.getRaca() + " errou o ataque";
         }
-
     }
 }

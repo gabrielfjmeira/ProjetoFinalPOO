@@ -40,7 +40,7 @@ public abstract class Personagem {
 
     public abstract String falaPersonagem();
 
-    public abstract void atacar(Personagem personagem);
+    public abstract String atacar(Personagem personagem);
 
 
 
