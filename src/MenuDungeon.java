@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MenuDungeon {
+public class MenuDungeon extends JFrame {
     Random rd = new Random();
 
     ArrayList<Dungeon> dungeons=new ArrayList<>();
@@ -17,26 +17,33 @@ public class MenuDungeon {
         menu.setLocationRelativeTo(null);
 
         Font font = new Font("Arial", Font.BOLD, 20);
-        Font title = new Font("Arial", Font.BOLD, 50);
-        Color orange = new Color(231, 107, 49);
-        Color white = new Color(255, 255, 255);
+        Font title = new Font("Arial", Font.BOLD, 30);
+        Color black = new Color(0, 0, 0);
 
-        BackgroundImage background =new BackgroundImage("C:\\Users\\brunn\\OneDrive\\Documentos\\PUC 2023.1\\POO\\POO_PJBL10\\src\\Imagens\\MenuInicial.jpg");
+        BackgroundImage background = new BackgroundImage("C:\\Users\\user\\IdeaProjects\\POOProjeto\\src\\Images\\BackgroundMenuDungeon.jpg");
+        ImageIcon backgroundButton = new ImageIcon("C:\\Users\\user\\IdeaProjects\\POOProjeto\\src\\Images\\Button.png");
+
         menu.add(background);
         background.setLayout(null);
+
         //Título
-        JLabel titulo = new JLabel("DUNGEONS");
-        titulo.setBounds(400, 100, 320, 70);
+        JLabel titulo = new JLabel("Inicie uma Jornada Aventureiro");
+        titulo.setBounds(300, 100, 500, 70);
         titulo.setFont(title);
-        titulo.setForeground(orange);
+        titulo.setForeground(black);
         background.add(titulo);
+
         //Botão para voltar para o menu
         JButton voltar = new JButton();
-        voltar.setText("Voltar");
-        voltar.setBounds(100, 100, 100, 50);
-        voltar.setFont(font);
-        voltar.setForeground(orange);
-        voltar.setBackground(white);
+        voltar.setBounds(50, 25, 100, 50);
+        voltar.setLayout(null);
+        //estilizacao do botao
+        voltar.setIcon(backgroundButton);
+        JLabel nomeBotao1 = new JLabel();
+        nomeBotao1.setText("Voltar");
+        nomeBotao1.setFont(font);
+        voltar.add(nomeBotao1);
+        nomeBotao1.setBounds(20,-10,250,70);
         background.add(voltar);
 
         ArrayList<Personagem> inimigosDungeon1= new ArrayList<>();
@@ -45,25 +52,33 @@ public class MenuDungeon {
         }
         dungeons.add(new Dungeon("Floresta dos Goblins",inimigosDungeon1));
 
+
         //Botão Dungeon 1
         JButton btnDungeon1 = new JButton();
-        btnDungeon1.setText(dungeons.get(0).getNome());
-        btnDungeon1.setFont(font);
-        btnDungeon1.setBounds(400,200,250,70);
-        btnDungeon1.setForeground(orange);
-        btnDungeon1.setBackground(white);
+        btnDungeon1.setBounds(405,200,250,60);
+        btnDungeon1.setLayout(null);
+        //estilizacao do botao
+        btnDungeon1.setIcon(backgroundButton);
+        JLabel nomeBotao2 = new JLabel();
+        nomeBotao2.setText("Floresta dos Goblins");
+        nomeBotao2.setFont(font);
+        btnDungeon1.add(nomeBotao2);
+        nomeBotao2.setBounds(27,-6,250,70);
         background.add(btnDungeon1);
+
+
 
         //Ações dos botões
         voltar.addActionListener(this::voltar);
         btnDungeon1.addActionListener(this::iniciaDungeon1);
+
 
         menu.setVisible(true);
     }
 
     private void iniciaDungeon1(ActionEvent e) {
         menu.setVisible(false);
-        dungeons.get(0).inicializarDungeon("A batalha na " + dungeons.get(0).getNome() + " começa!", "", "");
+        dungeons.get(0).inicializarDungeon();
     }
 
     private void voltar(ActionEvent e) {

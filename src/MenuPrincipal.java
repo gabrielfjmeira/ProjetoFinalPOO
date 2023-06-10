@@ -8,10 +8,9 @@ import java.util.Scanner;
 
 public class MenuPrincipal extends JFrame {
     private JFrame menu =new JFrame();
-    private File file = new File("");
+    private File file = new File("C:\\Users\\user\\IdeaProjects\\POOProjeto\\progressoTiago .txt");
     private ArrayList heroiCarregado = new ArrayList<>();
     Scanner scan;
-    public static Heroi heroi;
 
     public MenuPrincipal(){
         //Configuração da tela
@@ -45,6 +44,7 @@ public class MenuPrincipal extends JFrame {
         JButton criarPersonagem = new JButton();
         criarPersonagem.setBounds(50,150,250,60);
         criarPersonagem.setLayout(null);
+        // estilizacao do botao
         criarPersonagem.setIcon(backgroundButton);
         JLabel nomeBotao1 = new JLabel();
         nomeBotao1.setText("Criar Personagem");
@@ -56,6 +56,7 @@ public class MenuPrincipal extends JFrame {
         JButton carregarPersonagem = new JButton();
         carregarPersonagem.setBounds(50,250,250,60);
         carregarPersonagem.setLayout(null);
+        // estilizacao do botao
         carregarPersonagem.setIcon(backgroundButton);
         JLabel nomeBotao3 = new JLabel();
         nomeBotao3.setText("Carregar Personagem");
@@ -68,6 +69,7 @@ public class MenuPrincipal extends JFrame {
         JButton sair = new JButton();
         sair.setBounds(50,350,250,60);
         sair.setLayout(null);
+        //estilizacao do botao
         sair.setIcon(backgroundButton);
         JLabel nomeBotao2 = new JLabel();
         nomeBotao2.setText("Sair");
@@ -82,7 +84,7 @@ public class MenuPrincipal extends JFrame {
         sair.addActionListener(this::sair);
         
 
-        // montando componentes
+        // Organizando os elementos da tela
         backgroundForm.setLayout(null);
         backgroundForm.setBounds(375,100, 350,450);
         backgroundForm.add(titulo);
@@ -100,7 +102,7 @@ public class MenuPrincipal extends JFrame {
             while(scan.hasNextLine()){
                 heroiCarregado.add(scan.nextLine());
             }
-            heroi = new Heroi((String) heroiCarregado.get(0), (String) heroiCarregado.get(1), (String) heroiCarregado.get(2), (String) heroiCarregado.get(3));
+            MenuCriarHeroi.heroi = new Heroi((String) heroiCarregado.get(0), (String) heroiCarregado.get(1), (String) heroiCarregado.get(2), (String) heroiCarregado.get(3));
             JOptionPane.showMessageDialog(null, "Personagem Carregado!");
             menu.setVisible(false);
             MenuJogo menuJogo = new MenuJogo();

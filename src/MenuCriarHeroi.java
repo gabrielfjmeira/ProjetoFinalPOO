@@ -97,13 +97,13 @@ public class MenuCriarHeroi extends JFrame {
     private void addHeroi(ActionEvent e) {
         String nome = nomeHeroiInput.getText();
         String classe = (String) tipoHeroiInput.getSelectedItem();
-        if(nome.length() > 0 && !classe.equals("Selecione uma opção")){
+        try{
             heroi = new Heroi(nome, classe);
             JOptionPane.showMessageDialog(null, "Personagem Criado!");
             menu.setVisible(false);
             MenuJogo menuJogo = new MenuJogo();
-        }else{
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }catch(RuntimeException f){
+            JOptionPane.showMessageDialog(null, f.getMessage());
         }
     }
 }
