@@ -10,7 +10,7 @@ public class MenuJogo {
 
     //Fonte das Letras
     private Font font = new Font("Arial",Font.BOLD,20);
-    private Font title = new Font("Arial",Font.BOLD,40);
+    private Font title = new Font("Arial",Font.BOLD,30);
     private Color black = new Color(0,0,0);
     //Componentes para Tela
     private JFrame menu = new JFrame();

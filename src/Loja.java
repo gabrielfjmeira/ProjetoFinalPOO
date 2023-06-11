@@ -8,7 +8,7 @@ public class Loja {
     //Fonte das Letras
     private Font font = new Font("Arial",Font.BOLD,20);
     private Font title = new Font("Arial",Font.BOLD,40);
-    private Color black = new Color(0,0,0);
+    private Color white = new Color(255,255,255);
     //Componentes Tela
     private JFrame menu = new JFrame();
     private BackgroundImage background =new BackgroundImage("src/Imagem/imagemLoja.jpg");
@@ -16,6 +16,7 @@ public class Loja {
     private ImageIcon imageArmaG =new ImageIcon("src/Imagem/espada1.png");
     private ImageIcon imageArmaM =new ImageIcon("src/Imagem/cajado1.png");
     private ImageIcon imageArmaA =new ImageIcon("src/Imagem/arco2.png");
+    private ImageIcon imageCoin =new ImageIcon("src/Imagem/Coin.png");
     private ImageIcon backgroundButton = new ImageIcon("src/Imagem/Button.png");
 
     public Loja(){
@@ -49,12 +50,12 @@ public class Loja {
         background.add(pocaoLoja);
         //Botão para comprar poção
         JButton comprarPocao = new JButton();
-        comprarPocao.setBounds(200, 400, 120, 50);
+        comprarPocao.setBounds(200, 400, 150, 50);
         comprarPocao.setLayout(null);
         //estilizacao do botao
         comprarPocao.setIcon(backgroundButton);
         JLabel nomePocao = new JLabel();
-        nomePocao.setText("Comprar");
+        nomePocao.setText("Comprar 10G");
         nomePocao.setFont(font);
         comprarPocao.add(nomePocao);
         nomePocao.setBounds(20,-10,250,70);
@@ -65,17 +66,17 @@ public class Loja {
             JLabel armaLoja= new JLabel(imageArmaG);
             armaLoja.setBounds(550,180,250,250);
             background.add(armaLoja);
-            //Botão para comprar poção
+            //Botão para arma
             JButton comprarArma = new JButton();
-            comprarArma.setBounds(600, 400, 120, 50);
+            comprarArma.setBounds(600, 400, 150, 50);
             comprarArma.setLayout(null);
             //estilizacao do botao
             comprarArma.setIcon(backgroundButton);
             JLabel nomeArma = new JLabel();
-            nomeArma.setText("Comprar");
+            nomeArma.setText("Comprar 100G");
             nomeArma.setFont(font);
             comprarArma.add(nomeArma);
-            nomeArma.setBounds(20,-10,250,70);
+            nomeArma.setBounds(10,-10,250,70);
             background.add(comprarArma);
             comprarArma.addActionListener(this::comprarArma);
 
@@ -84,17 +85,17 @@ public class Loja {
             JLabel armaLoja= new JLabel(imageArmaM);
             armaLoja.setBounds(550,180,250,250);
             background.add(armaLoja);
-            //Botão para comprar poção
+            //Botão para arma
             JButton comprarArma = new JButton();
-            comprarArma.setBounds(600, 400, 120, 50);
+            comprarArma.setBounds(600, 400, 150, 50);
             comprarArma.setLayout(null);
             //estilizacao do botao
             comprarArma.setIcon(backgroundButton);
             JLabel nomeArma = new JLabel();
-            nomeArma.setText("Comprar");
+            nomeArma.setText("Comprar 100G");
             nomeArma.setFont(font);
             comprarArma.add(nomeArma);
-            nomeArma.setBounds(20,-10,250,70);
+            nomeArma.setBounds(10,-10,250,70);
             background.add(comprarArma);
             comprarArma.addActionListener(this::comprarArma);
         }
@@ -102,26 +103,29 @@ public class Loja {
             JLabel armaLoja= new JLabel(imageArmaA);
             armaLoja.setBounds(550,180,250,250);
             background.add(armaLoja);
-            //Botão para comprar poção
+            //Botão para arma
             JButton comprarArma = new JButton();
-            comprarArma.setBounds(600, 400, 120, 50);
+            comprarArma.setBounds(600, 400, 150, 50);
             comprarArma.setLayout(null);
             //estilizacao do botao
             comprarArma.setIcon(backgroundButton);
             JLabel nomeArma = new JLabel();
-            nomeArma.setText("Comprar");
+            nomeArma.setText("Comprar 100G");
             nomeArma.setFont(font);
             comprarArma.add(nomeArma);
-            nomeArma.setBounds(20,-10,250,70);
+            nomeArma.setBounds(10,-10,250,70);
             background.add(comprarArma);
             comprarArma.addActionListener(this::comprarArma);
         }
 
         //Mostrar Dinheiro
+        JLabel coin= new JLabel(imageCoin);
+        coin.setBounds(50,100,70,70);
+        background.add(coin);
         JLabel dinheiro = new JLabel(Integer.toString(heroi.getOuro()));
-        dinheiro.setBounds(50, 100, 350, 70);
+        dinheiro.setBounds(120, 100, 350, 70);
         dinheiro.setFont(title);
-        dinheiro.setForeground(black);
+        dinheiro.setForeground(white);
         background.add(dinheiro);
 
 
@@ -134,9 +138,10 @@ public class Loja {
     }
 
     private void comprarArma(ActionEvent a) {
-        if(heroi.getOuro()-10>=0){
+        if(heroi.getOuro()-100>=0){
             if(heroi.getClasse().equals("Guerreiro")){
                 heroi.setArma(new Arma("Excalibur",5));
+
             }
             else if(heroi.getClasse().equals("Mago")){
                 heroi.setArma(new Arma("Spectrum",5));

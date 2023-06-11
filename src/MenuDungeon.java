@@ -27,6 +27,7 @@ public class MenuDungeon {
     private JFrame menu =new JFrame();
     private BackgroundImage background = new BackgroundImage("src/Imagem/BackgroundMenuDungeon.jpg");
     private ImageIcon backgroundButton = new ImageIcon("src/Imagem/Button.png");
+    private String fala;
     public MenuDungeon(){
         menu.setTitle("Menu - Dungeons");
         menu.setSize(1080,720);
@@ -61,7 +62,7 @@ public class MenuDungeon {
             inimigosDungeon1.add(new Inimigo("Goblins"));
         }
         dungeons.add(new Dungeon("Floresta dos Goblins",inimigosDungeon1));
-
+        fala = inimigosDungeon1.get(0).falaPersonagem();
 
         //Botão Dungeon 1
         JButton btnDungeon1 = new JButton();
@@ -106,7 +107,7 @@ public class MenuDungeon {
 
     private void iniciaDungeon1(ActionEvent a) {
         menu.setVisible(false);
-        dungeons.get(0).inicializarDungeon("A batalha na " + dungeons.get(0).getNome() + " começa!", "", "");
+        dungeons.get(0).inicializarDungeon("A batalha na " + dungeons.get(0).getNome() + " começa!", MenuCriarHeroi.heroi.falaPersonagem(),fala );
         dungeonTheme.stop();
         fightTheme.start();
     }

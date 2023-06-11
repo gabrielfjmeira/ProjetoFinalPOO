@@ -115,7 +115,7 @@ public class Heroi extends Personagem {
         int defesaInimigo = personagem.getDefesa();
         if (dadoHeroi > defesaInimigo) {
             personagem.setVida(personagem.getVida() - this.getAtaque() - arma.getDano());
-            return  this.getNome()+ " atacou o inimigo usando "+ arma.getNome()+ (this.getAtaque()+arma.getDano()) + "de dano!";
+            return  this.getNome()+ " atacou o inimigo usando "+ arma.getNome() +" "+ (this.getAtaque()+arma.getDano()) + " de dano!";
 
         } else {
             return this.getNome() + " errou o ataque!";

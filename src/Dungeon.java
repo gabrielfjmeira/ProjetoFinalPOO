@@ -18,6 +18,10 @@ public class Dungeon {
         return nome;
     }
     private JFrame menu =new JFrame();
+    private ImageIcon imageGuerreiro =new ImageIcon("src/Imagem/guerreiro.png");
+    private ImageIcon imageMago =new ImageIcon("src/Imagem/mago.png");
+    private ImageIcon imageArqueiro =new ImageIcon("src/Imagem/arqueiro.png");
+    private ImageIcon imageGoblin =new ImageIcon("src/Imagem/goblin1.png");
     public void inicializarDungeon(String status, String mensagemHeroi, String mensagemInimigo){
         menu.setTitle("Floresta Goblin");
         menu.setSize(1080,720);
@@ -27,7 +31,6 @@ public class Dungeon {
 
         Font font = new Font("Arial", Font.BOLD, 20);
         Font title = new Font("Arial", Font.BOLD, 50);
-        Color orange = new Color(231, 107, 49);
         Color white = new Color(255, 255, 255);
 
 
@@ -40,77 +43,106 @@ public class Dungeon {
         //Título
         JLabel titulo = new JLabel();
         titulo.setText(this.getNome());
-        titulo.setBounds(300, 100, 550, 70);
+        titulo.setBounds(300, 10, 550, 70);
         titulo.setFont(title);
-        titulo.setForeground(orange);
+        titulo.setForeground(white);
         background.add(titulo);
 
-        //Fala do Herói
-        JLabel falaHeroi = new JLabel();
-        falaHeroi.setBounds(75, 170, 450, 70);
-        falaHeroi.setText(heroi.falaPersonagem());
-        falaHeroi.setFont(font);
-        falaHeroi.setForeground(orange);
-        background.add(falaHeroi);
+//        //Fala do Herói -- retirei pra nao ficar repetindo
+//        JLabel falaHeroi = new JLabel();
+//        falaHeroi.setBounds(75, 500, 450, 70);
+//        falaHeroi.setText(heroi.falaPersonagem());
+//        falaHeroi.setFont(font);
+//        falaHeroi.setForeground(white);
+//        background.add(falaHeroi);
+
 
         //Nome do Herói
         JLabel nomeHeroi = new JLabel();
-        nomeHeroi.setBounds(75, 200, 350, 70);
+        nomeHeroi.setBounds(75, 70, 350, 70);
         nomeHeroi.setText(heroi.getNome());
         nomeHeroi.setFont(font);
-        nomeHeroi.setForeground(orange);
+        nomeHeroi.setForeground(white);
         background.add(nomeHeroi);
 
         //Vida do Herói
         JLabel vidaHeroi = new JLabel();
-        vidaHeroi.setBounds(75, 230, 350, 70);
+        vidaHeroi.setBounds(75, 100, 350, 70);
         if(heroi.getVida() > 0){
             vidaHeroi.setText("Vida: " + heroi.getVida());
         }else{
             vidaHeroi.setText("Vida: 0");
         }
         vidaHeroi.setFont(font);
-        vidaHeroi.setForeground(orange);
+        vidaHeroi.setForeground(white);
         background.add(vidaHeroi);
 
         //Poções do Herói
         JLabel pocaoVida = new JLabel();
-        pocaoVida.setBounds(75, 250, 350, 70);
+        pocaoVida.setBounds(75, 130, 350, 70);
         pocaoVida.setText("Poções disponíveis: " + heroi.getQtdPocao());
         pocaoVida.setFont(font);
-        pocaoVida.setForeground(orange);
+        pocaoVida.setForeground(white);
         background.add(pocaoVida);
+
+        if(heroi.getClasse().equals("Guerreiro")) {
+            JLabel guerreiro = new JLabel(imageGuerreiro);
+            guerreiro.setBounds(50, 180, 350, 300);
+            background.add(guerreiro);
+        }
+        if(heroi.getClasse().equals("Mago")) {
+            JLabel mago = new JLabel(imageMago);
+            mago.setBounds(50, 180, 350, 300);
+            background.add(mago);
+        }
+        if(heroi.getClasse().equals("Arqueiro")) {
+            JLabel arqueiro = new JLabel(imageArqueiro);
+            arqueiro.setBounds(50, 180, 350, 300);
+            background.add(arqueiro);
+        }
+
+
+
+
+
+
 
         if(inimigos.size() < 1){
 
         }else {
-            //Fala do Inimigo
-            JLabel falaInimigo = new JLabel();
-            falaInimigo.setBounds(525, 170, 650, 70);
-            falaInimigo.setText(inimigos.get(0).falaPersonagem());
-            falaInimigo.setFont(font);
-            falaInimigo.setForeground(orange);
-            background.add(falaInimigo);
+//            //Fala do Inimigo --Retirei pra nao ficar repetindo
+//            JLabel falaInimigo = new JLabel();
+//            falaInimigo.setBounds(525, 170, 650, 70);
+//            falaInimigo.setText(inimigos.get(0).falaPersonagem());
+//            falaInimigo.setFont(font);
+//            falaInimigo.setForeground(white);
+//            background.add(falaInimigo);
 
             //Nome do Inimigo
             JLabel nomeInimigo = new JLabel();
-            nomeInimigo.setBounds(525, 200, 350, 70);
+            nomeInimigo.setBounds(900, 70, 350, 70);
             nomeInimigo.setText(((Inimigo) inimigos.get(0)).getRaca());
             nomeInimigo.setFont(font);
-            nomeInimigo.setForeground(orange);
+            nomeInimigo.setForeground(white);
             background.add(nomeInimigo);
 
             //Vida do Inimigo
             JLabel vidaInimigo = new JLabel();
-            vidaInimigo.setBounds(525, 230, 350, 70);
+            vidaInimigo.setBounds(900, 100, 350, 70);
             if (inimigos.get(0).getVida() > 0) {
                 vidaInimigo.setText("Vida: " + inimigos.get(0).getVida());
             } else {
                 vidaInimigo.setText("Vida: 0");
             }
             vidaInimigo.setFont(font);
-            vidaInimigo.setForeground(orange);
+            vidaInimigo.setForeground(white);
             background.add(vidaInimigo);
+
+            JLabel goblin = new JLabel(imageGoblin);
+            goblin.setBounds(700, 180, 350, 300);
+            background.add(goblin);
+
+
         }
 
         //Botão de Atacar
@@ -172,7 +204,7 @@ public class Dungeon {
 
         //Usar Poção
         JButton btnPocao = new JButton();
-        btnPocao.setBounds(450, 600, 150, 50);
+        btnPocao.setBounds(450, 620, 150, 50);
         btnPocao.setLayout(null);
         //estilizacao do botão
         btnPocao.setIcon(backgroundButton);
@@ -187,26 +219,26 @@ public class Dungeon {
 
         //Mensagem de Status da Dungeon
         JLabel mensagemStatus = new JLabel();
-        mensagemStatus.setBounds(320, 400, 550, 70);
+        mensagemStatus.setBounds(320, 470, 550, 70);
         mensagemStatus.setText(status);
         mensagemStatus.setFont(font);
-        mensagemStatus.setForeground(orange);
+        mensagemStatus.setForeground(white);
         background.add(mensagemStatus);
 
         //Mensagem de Info Herói
         JLabel mensagemInfoHeroi = new JLabel();
-        mensagemInfoHeroi.setBounds(75, 350, 550, 70);
+        mensagemInfoHeroi.setBounds(50, 520, 550, 70);
         mensagemInfoHeroi.setText(mensagemHeroi);
         mensagemInfoHeroi.setFont(font);
-        mensagemInfoHeroi.setForeground(orange);
+        mensagemInfoHeroi.setForeground(white);
         background.add(mensagemInfoHeroi);
 
         //Mensagem de Info Inimigo
         JLabel mensagemInfoInimigo = new JLabel();
-        mensagemInfoInimigo.setBounds(525, 350, 550, 70);
+        mensagemInfoInimigo.setBounds(600, 520, 550, 70);
         mensagemInfoInimigo.setText(mensagemInimigo);
         mensagemInfoInimigo.setFont(font);
-        mensagemInfoInimigo.setForeground(orange);
+        mensagemInfoInimigo.setForeground(white);
         background.add(mensagemInfoInimigo);
 
         //Ações dos Botões
@@ -267,7 +299,7 @@ public class Dungeon {
             inimigos.remove(0);
 
             //Mensagem do Inimigo
-            msgInimigo = heroi.getNome() + "derrotou o inimigo!";
+            msgInimigo = heroi.getNome() + " derrotou o inimigo!";
 
         }else if(heroi.getVida() <= 0){ //Herói morreu
             msgHeroi = heroi.getNome() + " morreu!";
