@@ -102,6 +102,7 @@ public class MenuCriarHeroi extends JFrame {
             JOptionPane.showMessageDialog(null, "Personagem Criado!");
             menu.setVisible(false);
             MenuJogo menuJogo = new MenuJogo();
+            MenuPrincipal.nextPage();
         }catch(RuntimeException f){
             JOptionPane.showMessageDialog(null, f.getMessage());
         }

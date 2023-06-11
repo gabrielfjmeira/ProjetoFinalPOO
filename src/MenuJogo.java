@@ -139,6 +139,8 @@ public class MenuJogo extends JFrame {
     private void jogar(ActionEvent e) {
         menu.setVisible(false);
         MenuDungeon menuDungeon = new MenuDungeon();
+        MenuPrincipal.nextPage();
+        MenuPrincipal.parar();
     }
 
 }

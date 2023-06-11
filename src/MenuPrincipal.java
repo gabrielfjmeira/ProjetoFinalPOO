@@ -3,10 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.sound.sampled.*;
 
 public class MenuPrincipal extends JFrame {
+    public static Clip backgroundClip;
+    public static Clip NextPageClip;
     private JFrame menu =new JFrame();
     private File file = new File("C:\\Users\\user\\IdeaProjects\\POOProjeto\\progressoTiago .txt");
     private ArrayList heroiCarregado = new ArrayList<>();
@@ -27,6 +31,8 @@ public class MenuPrincipal extends JFrame {
         BackgroundImage background = new BackgroundImage("C:\\Users\\user\\IdeaProjects\\POOProjeto\\src\\Images\\MenuImage.jpg");
         BackgroundImage backgroundForm = new BackgroundImage("C:\\Users\\user\\IdeaProjects\\POOProjeto\\src\\Images\\BackgroundForm3.jpg");
         ImageIcon backgroundButton = new ImageIcon("C:\\Users\\user\\IdeaProjects\\POOProjeto\\src\\Images\\Button.png");
+        File backgroundMusicFile = new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCerto\\src\\Images\\BackGround.WAV");
+        File soundNextPage = new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCerto\\src\\Images\\NextPage(1).WAV");
 
         menu.add(background);
         background.setLayout(null);
@@ -92,6 +98,25 @@ public class MenuPrincipal extends JFrame {
         backgroundForm.add(carregarPersonagem);
         backgroundForm.add(sair);
 
+        try {
+            AudioInputStream backgroundAudioInputStream = AudioSystem.getAudioInputStream(backgroundMusicFile);
+            backgroundClip = AudioSystem.getClip();
+            backgroundClip.open(backgroundAudioInputStream);
+            backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+            backgroundClip.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
+
+        //Carrega o arquivo da música de Próxima pagina
+        try {
+            AudioInputStream NextPageClipaudioInputStream = AudioSystem.getAudioInputStream(soundNextPage);
+            NextPageClip = AudioSystem.getClip();
+            NextPageClip.open(NextPageClipaudioInputStream);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
+
         menu.setVisible(true);
 
     }
@@ -115,9 +140,30 @@ public class MenuPrincipal extends JFrame {
     public void criarPersonagem(ActionEvent e) {
         menu.setVisible(false);
         MenuCriarHeroi menuHeroi = new MenuCriarHeroi();
+        nextPage();
     }
 
     private void sair(ActionEvent e) {
         System.exit(0);
     }
+
+    public static void parar() {
+        backgroundClip.stop();
+    }
+
+    public static void iniciar(){
+        if (!backgroundClip.isActive()) {
+            backgroundClip.setFramePosition(0);
+            backgroundClip.start();
+        }
+    }
+
+    public static void nextPage() {
+        if (!NextPageClip.isActive()) {
+            NextPageClip.setFramePosition(0);
+            NextPageClip.start();
+        }
+    }
+
+
 }

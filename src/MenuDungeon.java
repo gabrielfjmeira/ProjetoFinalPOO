@@ -1,10 +1,15 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MenuDungeon extends JFrame {
+    public static Clip fightTheme;
+    private Clip dungeonTheme;
     Random rd = new Random();
 
     ArrayList<Dungeon> dungeons=new ArrayList<>();
@@ -22,6 +27,8 @@ public class MenuDungeon extends JFrame {
 
         BackgroundImage background = new BackgroundImage("C:\\Users\\user\\IdeaProjects\\POOProjeto\\src\\Images\\BackgroundMenuDungeon.jpg");
         ImageIcon backgroundButton = new ImageIcon("C:\\Users\\user\\IdeaProjects\\POOProjeto\\src\\Images\\Button.png");
+        File DungeonTheme = new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCerto\\src\\Images\\DungeonTheme.WAV");
+        File FightTheme = new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCerto\\src\\Images\\FigthTheme.WAV");
 
         menu.add(background);
         background.setLayout(null);
@@ -72,6 +79,24 @@ public class MenuDungeon extends JFrame {
         voltar.addActionListener(this::voltar);
         btnDungeon1.addActionListener(this::iniciaDungeon1);
 
+        try {
+            AudioInputStream backgroundAudioInputStream = AudioSystem.getAudioInputStream(DungeonTheme);
+            dungeonTheme = AudioSystem.getClip();
+            dungeonTheme.open(backgroundAudioInputStream);
+            dungeonTheme.loop(Clip.LOOP_CONTINUOUSLY);
+            dungeonTheme.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            AudioInputStream  fightThemeAudioInputStream = AudioSystem.getAudioInputStream(FightTheme);
+            fightTheme = AudioSystem.getClip();
+            fightTheme.open(fightThemeAudioInputStream);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
+
 
         menu.setVisible(true);
     }
@@ -79,10 +104,18 @@ public class MenuDungeon extends JFrame {
     private void iniciaDungeon1(ActionEvent e) {
         menu.setVisible(false);
         dungeons.get(0).inicializarDungeon();
+        dungeonTheme.stop();
+        fightTheme.start();
     }
 
     private void voltar(ActionEvent e) {
+        dungeonTheme.stop();
         menu.setVisible(false);
         MenuJogo menuJogo = new MenuJogo();
+        MenuPrincipal.iniciar();
+    }
+
+    public static void fightThemeStop() {
+        fightTheme.stop();
     }
 }
