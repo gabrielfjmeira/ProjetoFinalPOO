@@ -3,14 +3,14 @@ import java.util.Random;
 public class Inimigo extends Personagem{
     private int recompensa;
     private String raca;
-    Random rd = new Random();
+    private Random rd = new Random();
     public Inimigo(String raca) {
         super(0, 0, 0);
         this.raca=raca;
         if (raca.equals("Goblins")){
-            super.setVida(20);
-            super.setAtaque(10);
-            super.setDefesa(10);
+            super.setVida(16);
+            super.setAtaque(8);
+            super.setDefesa(7);
             this.recompensa = rd.nextInt(25)+10;
         }
     }

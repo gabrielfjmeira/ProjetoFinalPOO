@@ -6,7 +6,7 @@ public class Heroi extends Personagem {
     private int ouro;
     private int qtdPocao;
     private Arma arma;
-    Random rd =new Random();
+    private Random rd =new Random();
     public Heroi(String nome,String classe) {
         super(0, 0,0);
         if(nome.length()==0){
@@ -97,17 +97,16 @@ public class Heroi extends Personagem {
     @Override
     public String falaPersonagem(){
         if(classe.equals("Guerreiro")){
-            return "Pelos poderes de Grayscou";
+            return super.falaPersonagem() + " Pelos poderes de Grayscou";
         }
         if(classe.equals("Mago")){
-            return "Pelos ensinamentos de Merlin";
+            return super.falaPersonagem() + " Pelos ensinamentos de Merlin";
         }
         if(classe.equals("Arqueiro")){
-            return "Das sombras, so a morte o espera";
+            return super.falaPersonagem() + " Das sombras, so a morte o espera";
         }
         return "";
     }
-
 
     @Override
     public String atacar(Personagem personagem){

@@ -35,7 +35,7 @@ public abstract class Personagem {
     }
 
     public  String falaPersonagem(){
-        return "Fala do Personagem";
+        return "Fala do Personagem:";
     }
 
     public abstract String atacar(Personagem personagem);
