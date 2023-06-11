@@ -14,9 +14,9 @@ public class MenuJogo {
     private Color black = new Color(0,0,0);
     //Componentes para Tela
     private JFrame menu = new JFrame();
-    private BackgroundImage background = new BackgroundImage("src/Imagem/MenuImage.jpg");
-    private BackgroundImage painel = new BackgroundImage("src/Imagem/Painel.jpg");
-    private ImageIcon backgroundButton = new ImageIcon("src/Imagem/Button.png");
+    private BackgroundImage background = new BackgroundImage("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\MenuImage.jpg");
+    private BackgroundImage painel = new BackgroundImage("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Painel.jpg");
+    private ImageIcon backgroundButton = new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Button.png");
     public MenuJogo(){
         menu.setTitle("Menu - Jogo");
         menu.setSize(1080,720);
@@ -132,6 +132,7 @@ public class MenuJogo {
 
     private void loja(ActionEvent actionEvent) {
         menu.setVisible(false);
+        MenuPrincipal.nextPage();
         Loja loja =new Loja();
     }
 

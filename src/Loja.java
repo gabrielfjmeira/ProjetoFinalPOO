@@ -1,9 +1,13 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class Loja {
 
+    public static Clip moneysound;
     private Heroi heroi;
     //Fonte das Letras
     private Font font = new Font("Arial",Font.BOLD,20);
@@ -11,13 +15,14 @@ public class Loja {
     private Color white = new Color(255,255,255);
     //Componentes Tela
     private JFrame menu = new JFrame();
-    private BackgroundImage background =new BackgroundImage("src/Imagem/imagemLoja.jpg");
-    private ImageIcon imagePocao =new ImageIcon("src/Imagem/pocaoVida.png");
-    private ImageIcon imageArmaG =new ImageIcon("src/Imagem/espada1.png");
-    private ImageIcon imageArmaM =new ImageIcon("src/Imagem/cajado1.png");
-    private ImageIcon imageArmaA =new ImageIcon("src/Imagem/arco2.png");
-    private ImageIcon imageCoin =new ImageIcon("src/Imagem/Coin.png");
-    private ImageIcon backgroundButton = new ImageIcon("src/Imagem/Button.png");
+    private BackgroundImage background =new BackgroundImage("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\imagemLoja.jpg");
+    private ImageIcon imagePocao =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\pocaoVida.png");
+    private ImageIcon imageArmaG =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\espada1.png");
+    private ImageIcon imageArmaM =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\cajado1.png");
+    private ImageIcon imageArmaA =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\/arco2.png");
+    private ImageIcon imageCoin =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Coin.png");
+    private ImageIcon backgroundButton = new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Button.png");
+    private File MoneySound =new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\moneySound.WAV");
 
     public Loja(){
         this.heroi = MenuCriarHeroi.heroi;
@@ -80,6 +85,14 @@ public class Loja {
             background.add(comprarArma);
             comprarArma.addActionListener(this::comprarArma);
 
+            try {
+                AudioInputStream moneysoundAudioInputStream = AudioSystem.getAudioInputStream(MoneySound);
+                moneysound = AudioSystem.getClip();
+                moneysound.open(moneysoundAudioInputStream);
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                ex.printStackTrace();
+            }
+
         }
         else if(heroi.getClasse().equals("Mago")){
             JLabel armaLoja= new JLabel(imageArmaM);
@@ -140,17 +153,24 @@ public class Loja {
     private void comprarArma(ActionEvent a) {
         if(heroi.getOuro()-100>=0){
             if(heroi.getClasse().equals("Guerreiro")){
+                moneysound.setFramePosition(0);
+                moneysound.start();
                 heroi.setArma(new Arma("Excalibur",5));
 
             }
             else if(heroi.getClasse().equals("Mago")){
+                moneysound.setFramePosition(0);
+                moneysound.start();
                 heroi.setArma(new Arma("Spectrum",5));
             }
             else if(heroi.getClasse().equals("Arqueiro")){
+                moneysound.setFramePosition(0);
+                moneysound.start();
                 heroi.setArma(new Arma("Turbilium",5));
             }
 
-            heroi.setOuro(heroi.getOuro()-10);
+
+            heroi.setOuro(heroi.getOuro()-100);
             menu.setVisible(false);
             new Loja();
         }
@@ -164,6 +184,7 @@ public class Loja {
     private void voltar(ActionEvent a) {
         menu.setVisible(false);
         MenuJogo menuJogo = new MenuJogo();
+        MenuPrincipal.nextPage();
         MenuPrincipal.iniciar();
     }
 
@@ -172,6 +193,8 @@ public class Loja {
             heroi.setQtdPocao(heroi.getQtdPocao()+1);
             heroi.setOuro(heroi.getOuro()-10);
             menu.setVisible(false);
+            moneysound.setFramePosition(0);
+            moneysound.start();
             new Loja();
         }
         else{

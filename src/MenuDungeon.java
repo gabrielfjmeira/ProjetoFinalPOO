@@ -15,8 +15,8 @@ public class MenuDungeon {
     //Som
     public static Clip fightTheme;
     private static Clip dungeonTheme;
-    private File DungeonTheme = new File("src/Som/DungeonTheme.WAV");
-    private File FightTheme = new File("src/Som/FigthTheme.WAV");
+    private File DungeonTheme = new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\DungeonTheme.WAV");
+    private File FightTheme = new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\FigthTheme.WAV");
 
     //Fonte das Letras
     private Font font = new Font("Arial",Font.BOLD,20);
@@ -25,8 +25,8 @@ public class MenuDungeon {
 
     //Componentes da Tela
     private JFrame menu =new JFrame();
-    private BackgroundImage background = new BackgroundImage("src/Imagem/BackgroundMenuDungeon.jpg");
-    private ImageIcon backgroundButton = new ImageIcon("src/Imagem/Button.png");
+    private BackgroundImage background = new BackgroundImage("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\BackgroundMenuDungeon.jpg");
+    private ImageIcon backgroundButton = new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Button.png");
     private String fala;
     public MenuDungeon(){
         menu.setTitle("Menu - Dungeons");
@@ -117,5 +117,9 @@ public class MenuDungeon {
         menu.setVisible(false);
         MenuJogo menuJogo = new MenuJogo();
         MenuPrincipal.iniciar();
+    }
+
+    public static void fightThemeStop(){
+        fightTheme.stop();
     }
 }

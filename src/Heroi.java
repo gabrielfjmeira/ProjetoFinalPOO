@@ -1,12 +1,19 @@
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public class Heroi extends Personagem {
+    public static Clip knifeHit;
+    public static Clip parry;
     private String nome;
     private String classe;
     private int ouro;
     private int qtdPocao;
     private Arma arma;
     private Random rd =new Random();
+    private File KnifeHit =new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\KnifeHit.WAV");
+    private File ParrySound =new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\ParrySound.WAV");
     public Heroi(String nome,String classe) {
         super(0, 0,0);
         if(nome.length()==0){
@@ -35,6 +42,22 @@ public class Heroi extends Personagem {
             super.setDefesa(6);
             this.ouro = 20;
         }
+
+        try {
+            AudioInputStream knifeHitAudioInputStream = AudioSystem.getAudioInputStream(KnifeHit);
+            knifeHit = AudioSystem.getClip();
+            knifeHit.open(knifeHitAudioInputStream);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            AudioInputStream parrySoundAudioInputStream = AudioSystem.getAudioInputStream(ParrySound);
+            parry = AudioSystem.getClip();
+            parry.open(parrySoundAudioInputStream);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public Heroi(String nome, String classe, String ouro, String vida,String qtdPocao,Arma arma) {
@@ -60,6 +83,7 @@ public class Heroi extends Personagem {
             super.setAtaque(35);
             super.setDefesa(6);
         }
+
     }
 
     public String getNome() {
@@ -114,9 +138,12 @@ public class Heroi extends Personagem {
         int defesaInimigo = personagem.getDefesa();
         if (dadoHeroi > defesaInimigo) {
             personagem.setVida(personagem.getVida() - this.getAtaque() - arma.getDano());
+            knifeHit.start();
+            knifeHit.setFramePosition(0);
             return  this.getNome()+ " atacou o inimigo usando "+ arma.getNome() +" "+ (this.getAtaque()+arma.getDano()) + " de dano!";
-
         } else {
+            parry.start();
+            parry.setFramePosition(0);
             return this.getNome() + " errou o ataque!";
         }
     }

@@ -17,8 +17,8 @@ public class MenuPrincipal {
     //Som
     public static Clip backgroundClip;
     public static Clip NextPageClip;
-    private File backgroundMusicFile = new File("src/Som/BackGround.WAV");
-    private File soundNextPage =new File("src/Som/NextPage.WAV");
+    private File backgroundMusicFile = new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\BackGround.WAV");
+    private File soundNextPage =new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\NextPage.WAV");
 
     //Fonte das Letras
     private Font font = new Font("Arial",Font.BOLD,20);
@@ -26,9 +26,9 @@ public class MenuPrincipal {
     private Color black = new Color(0,0,0);
     //Componentes para Tela
     private JFrame menu = new JFrame();
-    private BackgroundImage background = new BackgroundImage("src/Imagem/MenuImage.jpg");
-    private BackgroundImage painel = new BackgroundImage("src/Imagem/Painel.jpg");
-    private ImageIcon backgroundButton = new ImageIcon("src/Imagem/Button.png");
+    private BackgroundImage background = new BackgroundImage("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\MenuImage.jpg");
+    private BackgroundImage painel = new BackgroundImage("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Painel.jpg");
+    private ImageIcon backgroundButton = new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Button.png");
 
     //Construtor do Menu Principal
     public MenuPrincipal(){

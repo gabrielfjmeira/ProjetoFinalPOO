@@ -1,9 +1,14 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 public class Dungeon {
+    public static Clip deathSound;
+    public static Clip goblinDeath;
     private String nome;
     private Heroi heroi;
     private ArrayList<Personagem> inimigos;
@@ -18,10 +23,12 @@ public class Dungeon {
         return nome;
     }
     private JFrame menu =new JFrame();
-    private ImageIcon imageGuerreiro =new ImageIcon("src/Imagem/guerreiro.png");
-    private ImageIcon imageMago =new ImageIcon("src/Imagem/mago.png");
-    private ImageIcon imageArqueiro =new ImageIcon("src/Imagem/arqueiro.png");
-    private ImageIcon imageGoblin =new ImageIcon("src/Imagem/goblin1.png");
+    private ImageIcon imageGuerreiro =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\guerreiro.png");
+    private ImageIcon imageMago =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\mago.png");
+    private ImageIcon imageArqueiro =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\arqueiro.png");
+    private ImageIcon imageGoblin =new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\goblin1.png");
+    private File DeathSound =new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\HeroDeathSound.WAV");
+    private File GoblinDeathSound =new File("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Som\\GoblinDeath.WAV");
     public void inicializarDungeon(String status, String mensagemHeroi, String mensagemInimigo){
         menu.setTitle("Floresta Goblin");
         menu.setSize(1080,720);
@@ -35,8 +42,8 @@ public class Dungeon {
 
 
 
-        BackgroundImage background =new BackgroundImage("src/Imagem/FlorestaGoblin.jpg");
-        ImageIcon backgroundButton = new ImageIcon("src/Imagem/Button.png");
+        BackgroundImage background =new BackgroundImage("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\FlorestaGoblin.jpg");
+        ImageIcon backgroundButton = new ImageIcon("C:\\Users\\PC GAMER\\IdeaProjects\\Java\\PooCertonho\\src\\Imagem\\Button.png");
         menu.add(background);
         background.setLayout(null);
 
@@ -191,6 +198,9 @@ public class Dungeon {
         if (heroi.getVida() > 0){
             nomebtnVoltar.setText("Voltar");
         }else{
+            MenuDungeon.fightThemeStop();
+            deathSound.setFramePosition(0);
+            deathSound.start();
             nomebtnVoltar.setText("Game Over");
         }
         nomebtnVoltar.setFont(font);
@@ -247,6 +257,21 @@ public class Dungeon {
         btnPocao.addActionListener(this::usarPocao);
         btnvoltar.addActionListener(this::voltar);
 
+        try {
+            AudioInputStream deathSoundAudioInputStream = AudioSystem.getAudioInputStream(DeathSound);
+            deathSound = AudioSystem.getClip();
+            deathSound.open(deathSoundAudioInputStream);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            AudioInputStream GoblindeathSoundAudioInputStream = AudioSystem.getAudioInputStream(GoblinDeathSound);
+            goblinDeath = AudioSystem.getClip();
+            goblinDeath .open(GoblindeathSoundAudioInputStream);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
+        }
+
         menu.setVisible(true);
 
     }
@@ -254,8 +279,10 @@ public class Dungeon {
     private void voltar(ActionEvent e) {
         menu.setVisible(false);
         if(heroi.getVida() > 0){
+            MenuDungeon.fightThemeStop();
             MenuDungeon menuDungeon = new MenuDungeon();
         }else{
+            MenuDungeon.fightThemeStop();
             MenuPrincipal menuPrincipal = new MenuPrincipal();
         }
 
@@ -266,6 +293,7 @@ public class Dungeon {
         if(rd.nextInt(10)+1>=8){
             JOptionPane.showMessageDialog(null, heroi.getNome() + " escapou!");
             menu.setVisible(false);
+            MenuDungeon.fightThemeStop();
             MenuDungeon menuDungeon=new MenuDungeon();
         }else{
             //Mensagem do inimigo
@@ -274,6 +302,8 @@ public class Dungeon {
             //Mensagem do herói
             String msgHeroi = heroi.getNome() + " não conseguiu escapar!";
             if(heroi.getVida() <= 0){
+                deathSound.setFramePosition(0);
+                deathSound.start();
                 msgHeroi = heroi.getNome() + " morreu!";
             }
 
@@ -291,6 +321,8 @@ public class Dungeon {
         String msgInimigo = inimigos.get(0).atacar(heroi);
 
         if(inimigos.get(0).getVida() <= 0){ //Herói derrotou o inimigo
+            goblinDeath.setFramePosition(0);
+            goblinDeath.start();
 
             //Recompensa adicionada no saldo do Herói
             heroi.setOuro(heroi.getOuro() + ((Inimigo) inimigos.get(0)).getRecompensa());
@@ -302,6 +334,8 @@ public class Dungeon {
             msgInimigo = heroi.getNome() + " derrotou o inimigo!";
 
         }else if(heroi.getVida() <= 0){ //Herói morreu
+            deathSound.setFramePosition(0);
+            deathSound.start();
             msgHeroi = heroi.getNome() + " morreu!";
         }
 
